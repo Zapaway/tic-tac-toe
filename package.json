@@ -1,0 +1,11 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Tic-tac-toe experience in a two-player local game.",
+  "main": "main.js",
+  "scripts": {
+    "main": "node main.js"
+  },
+  "author": "Kenneth Chap",
+  "license": "ISC"
+}
