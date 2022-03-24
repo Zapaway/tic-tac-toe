@@ -1,5 +1,5 @@
 /**
- * Use
+ * Prompts that display within the terminal. 
  */
 
 /* Open source libs */
@@ -11,7 +11,7 @@ import figlet from "figlet";
 
 /**
  * Displays the welcome screen and asks if the players want to start the game.
- * If so, return true.
+ * @returns If "Yes", return true; otherwise false.
  */
 export async function promptWelcomeScreen() {
     console.log(gradient.pastel.multiline(figlet.textSync("Tic Tac Toe")));
@@ -32,14 +32,40 @@ export async function promptWelcomeScreen() {
 
 /**
  * Get a player's name.
+ * @param defaultName Default name if none is supplied.
+ * @returns The player's name.
  */
 export async function promptGetPlayerName(defaultName) {
-    const ans = await inquirer.prompt({
+    const res = await inquirer.prompt({
         name: "name",
         type: "input",
         message: `What is ${defaultName}'s name?`,
         default: () => defaultName,
     });
 
-    return ans.name.trim();
+    return res.name.trim();
+}
+
+/**
+ * 
+ */
+export async function promptGetBoardPosition() {
+    const option = await inquirer.prompt({
+        name: "pos",
+        type: "list", 
+        message: "What position do you want to pick on the board? 1 is the upperleft corner and 9 is the lowerright corner.",
+        choices: [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+        ]
+    });
+
+    return option.pos;
 }
