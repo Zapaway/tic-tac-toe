@@ -12,7 +12,7 @@ export class TicTacToeBoard {
      * Create an empty 3x3 tic-tac-toe-board.
      */
     constructor() {
-        this.ticTacToeBoard = [...DEFAULT_TIC_TAC_TOE_BOARD];
+        this.ticTacToeBoard = JSON.parse(JSON.stringify(DEFAULT_TIC_TAC_TOE_BOARD));  // make deep copy 
     };
 
     /**
@@ -71,7 +71,6 @@ export class TicTacToeBoard {
         // check horizontally
         for (let row of this.ticTacToeBoard) {
             if (row.every(x => x === target)) {
-                console.log("ROW");
                 return target;
             }
         }
@@ -79,7 +78,6 @@ export class TicTacToeBoard {
         // check vertically
         for (let i = 1; i < 4; ++i) {  
             if (checkIndicesForMatch([i, i+3, i+6])) {
-                console.log("COL");
                 return target;
             }
         }
@@ -88,7 +86,6 @@ export class TicTacToeBoard {
         const upperleftToLowerright = [1, 5, 9];
         const upperrightToLowerleft = [3, 5, 7];
         if (checkIndicesForMatch(upperleftToLowerright) || checkIndicesForMatch(upperrightToLowerleft)) {
-            console.log("DIA");
             return target;
         }
         
@@ -99,7 +96,7 @@ export class TicTacToeBoard {
      * Reset the board.
      */
     reset() {
-        this.ticTacToeBoard = [...DEFAULT_TIC_TAC_TOE_BOARD];
+        this.ticTacToeBoard = JSON.parse(JSON.stringify(DEFAULT_TIC_TAC_TOE_BOARD));
     }
 
     /* private helpers */
