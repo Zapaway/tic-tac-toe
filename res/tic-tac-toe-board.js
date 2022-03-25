@@ -1,3 +1,9 @@
+const DEFAULT_TIC_TAC_TOE_BOARD = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "],
+];
+
 /**
  * Class containing all methods and properties related to the 3x3 tic-tac-toe board.
  */
@@ -6,12 +12,19 @@ export class TicTacToeBoard {
      * Create an empty 3x3 tic-tac-toe-board.
      */
     constructor() {
-        this.ticTacToeBoard = [ 
-            [" ", " ", " "],
-            [" ", " ", " "],
-            [" ", " ", " "],
-        ];
+        this.ticTacToeBoard = [...DEFAULT_TIC_TAC_TOE_BOARD];
     };
+
+    /**
+     * All available positions on the board.
+     * @returns Array of available board positions.
+     */
+    get avalPositions() {
+        const flatBoard = this.ticTacToeBoard.flat();
+
+        // for every element, if there isn't an aval space, filter it out; turn array indices to board positions for aval spaces
+        return flatBoard.map((val, i, _) => val === " " ? i + 1: null).filter(val => val !== null);
+    }
 
     /**
      * Display the board (with a newline at end) to console.
@@ -52,6 +65,9 @@ export class TicTacToeBoard {
      * @returns The character if in the 3-in-a-row, otherwise null.
      */
     checkForWin(target) {
+        // helper for checking if indices indicate match by providing an arr
+        const checkIndicesForMatch = arr => arr.map(x => this._getCharAtPos(x)).every(x => x === target);
+
         // check horizontally
         for (let row of this.ticTacToeBoard) {
             if (row.every(x => x === target)) {
@@ -62,11 +78,8 @@ export class TicTacToeBoard {
 
         // check vertically
         for (let i = 1; i < 4; ++i) {  
-            if ([i, i+3, i+6]
-                .map(x => this._getCharAtPos(x))  // get all char in column
-                .every(x => x === target)) 
-                {
-                    console.log("COL");
+            if (checkIndicesForMatch([i, i+3, i+6])) {
+                console.log("COL");
                 return target;
             }
         }
@@ -74,9 +87,19 @@ export class TicTacToeBoard {
         // check diagonally 
         const upperleftToLowerright = [1, 5, 9];
         const upperrightToLowerleft = [3, 5, 7];
-        // TODO work on this
+        if (checkIndicesForMatch(upperleftToLowerright) || checkIndicesForMatch(upperrightToLowerleft)) {
+            console.log("DIA");
+            return target;
+        }
         
         return null;
+    }
+
+    /**
+     * Reset the board.
+     */
+    reset() {
+        this.ticTacToeBoard = [...DEFAULT_TIC_TAC_TOE_BOARD];
     }
 
     /* private helpers */

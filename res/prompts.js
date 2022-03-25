@@ -47,24 +47,15 @@ export async function promptGetPlayerName(defaultName) {
 }
 
 /**
- * 
+ * Get a board position.
+ * @returns Board position.
  */
-export async function promptGetBoardPosition() {
+export async function promptGetBoardPosition(avalPositions) {
     const option = await inquirer.prompt({
         name: "pos",
         type: "list", 
-        message: "What position do you want to pick on the board? 1 is the upperleft corner and 9 is the lowerright corner.",
-        choices: [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-        ]
+        message: "What available position do you want to pick on the board? 1 is the upperleft corner and 9 is the lowerright corner.",
+        choices: avalPositions
     });
 
     return option.pos;
