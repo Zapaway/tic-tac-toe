@@ -12,7 +12,7 @@ export class TicTacToeBoard {
      * Create an empty 3x3 tic-tac-toe-board.
      */
     constructor() {
-        this.ticTacToeBoard = JSON.parse(JSON.stringify(DEFAULT_TIC_TAC_TOE_BOARD));  // make deep copy 
+        this.ticTacToeBoard = JSON.parse(JSON.stringify(DEFAULT_TIC_TAC_TOE_BOARD));  // make deep copy of nested array
     };
 
     /**
@@ -46,7 +46,7 @@ export class TicTacToeBoard {
      * @param char The character to use. 
      * @returns If successful, return true; if space taken or doesn't exist, return false.
      */
-    replace(pos, char) {
+    replaceSpace(pos, char) {
         if (pos < 1 || pos > 9) {  // out of bounds
             return false;
         }
@@ -65,7 +65,7 @@ export class TicTacToeBoard {
      * @returns The character if in the 3-in-a-row, otherwise null.
      */
     checkForWin(target) {
-        // helper for checking if indices indicate match by providing an arr
+        // helper for checking if array indices indicate match by providing an arr
         const checkIndicesForMatch = arr => arr.map(x => this._getCharAtPos(x)).every(x => x === target);
 
         // check horizontally

@@ -2,10 +2,12 @@
  * Prompts that display within the terminal. 
  */
 
-/* Open source libs */
+
+/* Open source libs (please refer to "node_modules" folder to see all licenses for these libs)*/
 import inquirer from "inquirer";
 import gradient from "gradient-string";
 import figlet from "figlet";
+
 
 /**
  * Displays the welcome screen and asks if the players want to start the game.
@@ -15,7 +17,7 @@ export async function promptWelcomeScreen() {
     console.log(gradient.pastel.multiline(figlet.textSync("Tic Tac Toe")));
     console.log("Welcome to Tic-Tac-Toe! Whoever gets three in a row wins.\n");
 
-    return await promptYesNoSelect("Would you like to play?");
+    return await promptSelectYesOrNo("Would you like to play?");
 }
 
 /**
@@ -23,7 +25,7 @@ export async function promptWelcomeScreen() {
  * @param message The message to prompt the user with.
  * @returns If "Yes", return true; otherwise false.
  */
-export async function promptYesNoSelect(message) {
+export async function promptSelectYesOrNo(message) {
     const options = await inquirer.prompt({
         name: "chosen",
         type: "list",
