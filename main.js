@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 
+/* main.js */
 /**
  * Two players can play a local game of tic-tac-toe in the terminal.
  */
 
 
 /* Open source libs (please refer to "node_modules" folder to see all licenses for these libs)*/
-import { createSpinner } from "nanospinner";
+import { createSpinner } from "nanospinner";  // https://github.com/usmanyunusov/nanospinner
+import chalk from "chalk";  // https://github.com/chalk/chalk
+import gradient from "gradient-string";  // https://github.com/bokub/gradient-string
+
 
 /* Local files */
 import { promptGetBoardPosition, promptGetPlayerName, promptWelcomeScreen, promptSelectYesOrNo } from "./res/prompts.js";

@@ -1,13 +1,13 @@
+/* prompts.js */
 /**
  * Prompts that display within the terminal. 
  */
 
 
 /* Open source libs (please refer to "node_modules" folder to see all licenses for these libs)*/
-import inquirer from "inquirer";
-import gradient from "gradient-string";
-import figlet from "figlet";
-
+import inquirer from "inquirer";  // https://github.com/SBoudrias/Inquirer.js
+import gradient from "gradient-string";  // https://github.com/bokub/gradient-string
+import figlet from "figlet";  // https://github.com/cmatsuoka/figlet
 
 /**
  * Displays the welcome screen and asks if the players want to start the game.

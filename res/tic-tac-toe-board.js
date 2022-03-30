@@ -1,8 +1,10 @@
+/* tic-tac-toe-board.js */
+
 const DEFAULT_TIC_TAC_TOE_BOARD = [
     [" ", " ", " "],
     [" ", " ", " "],
     [" ", " ", " "],
-];
+];  // nested array allows easier tracking of markers and calculation of finding any three-in-a-rows
 
 /**
  * Class containing all methods and properties related to the 3x3 tic-tac-toe board.
